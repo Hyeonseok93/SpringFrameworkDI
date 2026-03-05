@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 2. 학생 빈 등록 -->
+    <bean id="student1" class="mylab.student.di.xml.Student">
+        <property name="id" value="S001" />
+        <property name="name" value="Kim" />
+        <property name="score" value="95" />
+    </bean>
+
+    <bean id="student2" class="mylab.student.di.xml.Student">
+        <property name="id" value="S002" />
+        <property name="name" value="Lee" />
+        <property name="score" value="85" />
+    </bean>
+
+    <bean id="student3" class="mylab.student.di.xml.Student">
+        <property name="id" value="S003" />
+        <property name="name" value="Park" />
+        <property name="score" value="75" />
+    </bean>
+
+    <!-- 강좌 빈 등록 및 학생 리스트 주입 -->
+    <bean id="course" class="mylab.student.di.xml.Course">
+        <property name="courseId" value="C001" />
+        <property name="courseName" value="Spring Framework" />
+        <property name="students">
+            <list>
+                <ref bean="student1" />
+                <ref bean="student2" />
+                <ref bean="student3" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- 성적 서비스 빈 등록 및 강좌 참조 주입 -->
+    <bean id="gradeService" class="mylab.student.di.xml.GradeService">
+        <property name="course" ref="course" />
+    </bean>
+
+</beans>
